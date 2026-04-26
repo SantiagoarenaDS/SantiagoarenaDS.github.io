@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calidad del Aire — Santiago Arena</title>
+    <meta name="description" content="Pipeline Airflow para datos de calidad de aire y temperatura de Buenos Aires.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#proyectos">← Back to projects</a>
+        <p class="project-kicker">Airflow · Docker · ETL · alertas operativas</p>
+        <h1>Calidad del Aire: pipeline ambiental orquestado con Airflow</h1>
+        <p class="intro">
+          Proyecto de Ingeniería de Datos que automatiza la adquisición, limpieza, transformación, integración
+          y monitoreo de datos ambientales de la Ciudad de Buenos Aires. El DAG coordina fuentes de calidad
+          de aire y temperatura, genera artefactos analíticos y envía notificaciones por correo para control
+          operativo y alertas por contaminantes críticos.
+        </p>
+        <div class="metric-row">
+          <div class="metric"><strong>139k+</strong><span>mediciones horarias de aire</span></div>
+          <div class="metric"><strong>354</strong><span>registros mensuales de temperatura</span></div>
+          <div class="metric"><strong>7</strong><span>módulos Python orquestados</span></div>
+          <div class="metric"><strong>P95</strong><span>alertas dinámicas por contaminante</span></div>
+        </div>
+        <img class="hero-visual" src="../../assets/projects/calidad-del-aire/airflow-report-06.jpg" alt="DAG de Airflow completado exitosamente">
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <section class="case-section">
+            <h2>Arquitectura</h2>
+            <p>
+              El pipeline corre como un DAG diario a las 08:00 UTC, con `catchup = False`, un reintento automático
+              y espera de cinco minutos ante fallos. La implementación se apoya en Docker para encapsular Airflow,
+              dependencias Python, rutas de datos y configuración de ejecución, logrando un entorno reproducible.
+            </p>
+            <p>
+              La lógica se divide en módulos independientes: descarga, transformación de temperatura, transformación
+              de calidad de aire, combinación de datasets, logging, operador de email y alerta de calidad de aire.
+              Esa modularidad hace que el DAG sea más mantenible y permite observar cada etapa desde la UI de Airflow.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>ETL y paralelismo</h2>
+            <ul>
+              <li>Ingesta automática de `temperature_raw.csv` y `air_quality_raw.csv` en la carpeta `data`.</li>
+              <li>Transformaciones en paralelo para temperatura mensual y calidad de aire horaria.</li>
+              <li>Estandarización de columnas, fechas, nulos textuales `s/d` y ordenamiento cronológico.</li>
+              <li>Agregación mensual de contaminantes con `groupby` por clave compuesta `anio, mes`.</li>
+              <li>Generación de dataset diario con día del año para análisis operacional y alertas.</li>
+              <li>LEFT JOIN entre agregados de aire y temperatura usando la clave `anio-mes`.</li>
+            </ul>
+          </section>
+
+          <section class="case-section">
+            <h2>Alertas y correos</h2>
+            <p>
+              El DAG implementa comunicación operativa en tres niveles: emails ante fallo o reintento, alerta
+              condicional cuando un contaminante supera su percentil 95 histórico y correo final de resumen
+              del pipeline. Este último confirma dimensiones, productos generados y correctitud general del flujo.
+            </p>
+            <p>
+              Algunos excesos detectados en las pruebas muestran el valor del monitoreo: CO en Centenario con
+              exceso de 833.7%, NO2 en Córdoba con 189.1% y PM10 en La Boca con 47.3% sobre P95.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Correctitud del DAG</h2>
+            <p>
+              La evidencia del PDF muestra ejecución completa en la UI de Airflow, recepción de correos automáticos,
+              alerta de contaminantes críticos y notificación final. La correctitud se apoya en secuencia de tareas,
+              logs, shapes coherentes entre datasets intermedios y merge final, además de artefactos reproducibles.
+            </p>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Repositorio</dt>
+            <dd><a href="https://github.com/SantiagoarenaDS/Calidad_del_aire" target="_blank" rel="noreferrer">SantiagoarenaDS/Calidad_del_aire</a></dd>
+            <dt>Stack</dt>
+            <dd>Apache Airflow, Docker, Python, Pandas, email notifications, CSV pipelines.</dd>
+            <dt>Fuentes</dt>
+            <dd>Datos abiertos de Buenos Aires y registros históricos de temperatura.</dd>
+            <dt>Producto final</dt>
+            <dd>`buenos_aires_environmental_data.csv`, reportes auxiliares y correos operativos.</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <section class="case-section">
+        <h2>Evidencia visual</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="../../assets/projects/calidad-del-aire/airflow-report-05.jpg" alt="Flujo de tareas del DAG">
+            <figcaption>Flujo del DAG con módulos secuenciales y paralelos.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/calidad-del-aire/airflow-report-06.jpg" alt="DAG completado y artefactos generados">
+            <figcaption>Ejecución exitosa, artefactos principales y producto final.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/calidad-del-aire/airflow-report-07.jpg" alt="Correos automáticos de alerta">
+            <figcaption>Recepción de correos automáticos y alerta por umbrales críticos.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/calidad-del-aire/airflow-report-08.jpg" alt="Correo de finalización del pipeline">
+            <figcaption>Resumen de finalización con control de dimensiones del proceso ETL.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Informe completo</h2>
+        <div class="slide-gallery">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-01.jpg" alt="Informe Airflow página 1">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-02.jpg" alt="Informe Airflow página 2">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-03.jpg" alt="Informe Airflow página 3">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-04.jpg" alt="Informe Airflow página 4">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-05.jpg" alt="Informe Airflow página 5">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-06.jpg" alt="Informe Airflow página 6">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-07.jpg" alt="Informe Airflow página 7">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-08.jpg" alt="Informe Airflow página 8">
+          <img src="../../assets/projects/calidad-del-aire/airflow-report-09.jpg" alt="Informe Airflow página 9">
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>
