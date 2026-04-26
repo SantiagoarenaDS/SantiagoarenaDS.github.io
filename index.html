@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Santiago Arena — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio online de Santiago Arena: proyectos de data science, simulacion, ingenieria de datos y analitica aplicada."
+    >
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#proyectos">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <img
+          class="portrait"
+          src="https://avatars.githubusercontent.com/u/119618284?v=4"
+          alt="Foto de perfil de Santiago Arena"
+          width="160"
+          height="160"
+        >
+        <p class="eyebrow">Data Science · Ingeniería de Datos · Simulación</p>
+        <h1>Hola, soy Santiago</h1>
+        <p class="intro">
+          Estudiante de Licenciatura en Ciencias de Datos con foco en proyectos aplicados de simulación,
+          análisis de datos e ingeniería de datos. Me interesa convertir problemas reales en modelos,
+          métricas y herramientas que ayuden a decidir mejor.
+        </p>
+        <div class="hero-actions" aria-label="Enlaces principales">
+          <a class="button button-primary" href="https://github.com/SantiagoarenaDS?tab=repositories" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/santiago-arena-92a8191a2" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </section>
+
+      <section class="section" id="proyectos">
+        <div class="section-heading">
+          <h2>Projects</h2>
+          <p>Primeros trabajos publicados. La idea es que esta base vaya creciendo con más detalle, demos y resultados.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-meta">2025 · Simulación de eventos discretos</div>
+            <h3>Terminal Baires</h3>
+            <p>
+              Simulación de operaciones portuarias con buques, contenedores y grúas para comparar escenarios
+              de capacidad, tiempos de espera, utilización de recursos y duración total del sistema.
+            </p>
+            <p class="tags">Python · SimPy · Streamlit · Pandas · NumPy · SciPy</p>
+            <a href="https://github.com/SantiagoarenaDS/terminalBaires" target="_blank" rel="noreferrer">View project</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-meta">2026 · Ingeniería de datos</div>
+            <h3>Calidad del Aire</h3>
+            <p>
+              Repositorio desarrollado en el contexto de Ingeniería de Datos de la Licenciatura en Ciencias de Datos
+              de la Universidad Católica Argentina, orientado al trabajo con datos ambientales.
+            </p>
+            <p class="tags">Data Engineering · Calidad de datos · Python</p>
+            <a href="https://github.com/SantiagoarenaDS/Calidad_del_aire" target="_blank" rel="noreferrer">View project</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-meta">2024 · Pipeline</div>
+            <h3>Pipeline SLI JAIIO 2024</h3>
+            <p>
+              Proyecto base para pipeline de datos presentado como repositorio público. Queda preparado para sumar
+              descripción del problema, arquitectura, fuentes y resultados principales.
+            </p>
+            <p class="tags">Pipeline · Datos · Automatización</p>
+            <a href="https://github.com/SantiagoarenaDS/Pipeline-SLI-JAIIO2024" target="_blank" rel="noreferrer">View project</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section resume-section" id="resume">
+        <div class="section-heading">
+          <h2>Resume</h2>
+          <p>Resumen inicial para presentar perfil, herramientas y áreas de interés.</p>
+        </div>
+
+        <div class="resume-layout">
+          <div class="resume-block">
+            <h3>Perfil</h3>
+            <p>
+              Perfil orientado a ciencia de datos aplicada, con experiencia académica y proyectos personales
+              en simulación, análisis exploratorio, dashboards y pipelines.
+            </p>
+          </div>
+          <div class="resume-block">
+            <h3>Stack</h3>
+            <p>Python, Pandas, NumPy, SimPy, Streamlit, notebooks, análisis estadístico y visualización de datos.</p>
+          </div>
+          <div class="resume-block">
+            <h3>Intereses</h3>
+            <p>Modelado de procesos, optimización operativa, ingeniería de datos, calidad de datos y productos analíticos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contacto">
+        <h2>Contact</h2>
+        <p>Para conectar o ver el código de los proyectos:</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/santiago-arena-92a8191a2" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/SantiagoarenaDS" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
