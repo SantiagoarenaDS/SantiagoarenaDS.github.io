@@ -31,19 +31,19 @@
     <main class="project-page">
       <section class="project-hero">
         <a class="back-link" href="../../#proyectos">← Back to projects</a>
-        <p class="project-kicker">JAIIO 2024 · R · machine learning · lingüística clínica</p>
-        <h1>Pipeline SLI: detección del trastorno específico del lenguaje</h1>
+        <p class="project-kicker">JAIIO/ASAID 2024 · paper publicado · NLP · machine learning</p>
+        <h1>Pipeline SLI: paper publicado sobre detección del trastorno específico del lenguaje</h1>
         <p class="intro">
-          En agosto de 2024 presenté en JAIIO un pipeline para detectar Trastorno Específico del Lenguaje (SLI)
-          a partir de transcripciones de narrativas espontáneas. La presentación fue realizada junto a Ricardo
-          Di Pasquale, director de la carrera de Ciencia de Datos de la UCA y ML Engineering Associate Director
-          en Accenture.
+          Paper de Santiago Arena y Antonio Quintero-Rincón publicado en JAIIO, Vol. 10 Núm. 1 (2024),
+          dentro del Simposio Argentino de Inteligencia Artificial y Ciencia de Datos. El trabajo propone
+          un pipeline de tres etapas para detectar Trastorno Específico del Lenguaje (SLI) en niños a partir
+          de 1063 transcripciones de narrativas espontáneas.
         </p>
         <div class="metric-row">
-          <div class="metric"><strong>43 → 11</strong><span>reducción inicial de variables</span></div>
-          <div class="metric"><strong>RF</strong><span>selección por importancia Gini</span></div>
-          <div class="metric"><strong>KNN</strong><span>validación cruzada para elegir k</span></div>
-          <div class="metric"><strong>JAIIO</strong><span>presentación académica 2024</span></div>
+          <div class="metric"><strong>1063</strong><span>entrevistas analizadas</span></div>
+          <div class="metric"><strong>62 → 6</strong><span>variables desde ingesta a modelo final</span></div>
+          <div class="metric"><strong>97.13%</strong><span>precisión reportada</span></div>
+          <div class="metric"><strong>98.71%</strong><span>sensibilidad con 6 características</span></div>
         </div>
         <img class="hero-visual" src="../../assets/projects/sli-jaiio/01-portada.jpg" alt="Portada de la presentación Pipeline SLI en JAIIO 2024">
       </section>
@@ -53,40 +53,44 @@
           <section class="case-section">
             <h2>Problema</h2>
             <p>
-              El proyecto busca apoyar la detección del SLI usando variables extraídas de narrativas espontáneas.
-              La hipótesis técnica es que indicadores lingüísticos como morfemas, errores de palabra, proporción
-              de verbos y riqueza léxica pueden aportar señal para separar casos de desarrollo típico y SLI.
+              El SLI afecta la comunicación y puede comprometer comprensión y expresión. El proyecto busca
+              detectar señales de SLI usando variables cuantitativas extraídas de narrativas espontáneas, evitando
+              depender de indicadores subjetivos difíciles de replicar. El objetivo es distinguir desarrollo típico
+              y SLI con un pipeline interpretable y reproducible.
             </p>
           </section>
 
           <section class="case-section">
-            <h2>Pipeline</h2>
+            <h2>Pipeline de tres etapas</h2>
             <ul>
-              <li>Carga de datos lingüísticos desde `all_data_R.csv`.</li>
-              <li>Limpieza de vacíos, remoción de duplicados y normalización de variables categóricas.</li>
-              <li>Selección de variables mediante Random Forest, matriz de correlación Spearman e importancia Gini.</li>
-              <li>Regresiones logísticas iterativas para retener variables significativas y explicables.</li>
-              <li>Modelo KNN con partición train/test y validación cruzada para seleccionar `k`.</li>
-              <li>Evaluación con matriz de confusión, pérdida cero-uno, curva ROC y AUC.</li>
+              <li>Ingesta y limpieza: de 62 variables iniciales a 43 variables cuantitativas relacionadas con narrativas.</li>
+              <li>Reducción de dimensionalidad: Random Forest e importancia Gini combinadas con correlación Spearman.</li>
+              <li>Selección explicativa: regresión logística iterativa hasta conservar 6 variables con `p-value < 0.05`.</li>
+              <li>Clasificación: modelo 14-NN entrenado con partición 70/30 y validación cruzada.</li>
+              <li>Evaluación: precisión, F1-score, sensibilidad, especificidad, ROC, RMSE, MAE, R2 y error OOB.</li>
             </ul>
           </section>
 
           <section class="case-section">
-            <h2>Variables clave</h2>
+            <h2>Resultados</h2>
             <p>
-              El análisis priorizó variables como `r_2_i_verbs`, `mlu_morphemes`, `word_errors`,
-              `regular_past_ed`, `average_syl` y `freq_ttr`. El proyecto no solo optimiza performance:
-              también cuida que las variables seleccionadas puedan ser interpretadas por usuarios clínicos
-              o investigadores del lenguaje.
+              La versión final del pipeline redujo el problema a 6 características y obtuvo 97.13% de precisión,
+              98.74% de F1-score, 98.71% de sensibilidad y 95.06% de especificidad. La matriz de confusión
+              del modelo 14-NN con 6 características reportó 238 positivos reales bien clasificados, 67 negativos
+              reales bien clasificados, 5 falsos negativos y 4 falsos positivos.
+            </p>
+            <p>
+              Las variables finales fueron: verbos sin declinar, morfemas por oración, errores de palabra,
+              promedio de sílabas por palabra, frecuencia de tipos de palabras y uso regular del pasado.
             </p>
           </section>
 
           <section class="case-section">
-            <h2>Presentación</h2>
+            <h2>Publicación y presentación</h2>
             <p>
-              La presentación en JAIIO 2024 fue una instancia de comunicación técnica: llevar un pipeline
-              reproducible desde el código hacia una audiencia académica, explicar decisiones de modelado y
-              mostrar cómo la ciencia de datos puede dialogar con problemas de lenguaje y salud.
+              El artículo fue publicado el 19 de septiembre de 2024 en JAIIO, Jornadas Argentinas de Informática,
+              en la sección ASAID. En agosto de 2024 participé de la instancia JAIIO junto a Ricardo Di Pasquale,
+              director de la carrera de Ciencia de Datos de la UCA y referente de machine learning en Accenture.
             </p>
           </section>
         </article>
@@ -95,15 +99,39 @@
           <dl>
             <dt>Repositorio</dt>
             <dd><a href="https://github.com/SantiagoarenaDS/Pipeline-SLI-JAIIO2024" target="_blank" rel="noreferrer">SantiagoarenaDS/Pipeline-SLI-JAIIO2024</a></dd>
-            <dt>Evento</dt>
-            <dd>53 JAIIO, agosto de 2024.</dd>
+            <dt>Publicación</dt>
+            <dd><a href="https://revistas.unlp.edu.ar/JAIIO/article/view/17908" target="_blank" rel="noreferrer">JAIIO Vol. 10 Núm. 1 (2024), pp. 209-222</a></dd>
+            <dt>Autores</dt>
+            <dd>Santiago Arena y Antonio Quintero-Rincón.</dd>
             <dt>Stack</dt>
             <dd>R, caret, randomForest, ggplot2, ROCR, dplyr, FSelector, CORElearn.</dd>
             <dt>Entregables</dt>
-            <dd>Dataset, R Markdown, pipeline de selección de variables, modelos y evaluación.</dd>
+            <dd>Paper, dataset, R Markdown, pipeline de selección de variables, modelos y evaluación.</dd>
           </dl>
         </aside>
       </div>
+
+      <section class="case-section">
+        <h2>Figuras del paper</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="../../assets/projects/sli-jaiio/paper/paper-05.jpg" alt="Pipeline metodológico del paper SLI">
+            <figcaption>Pipeline en cascada: limpieza, RF + Spearman, regresión logística y k-NN.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/sli-jaiio/paper/paper-10.jpg" alt="Resultados y tabla de regresión logística">
+            <figcaption>Resultados de selección por regresión logística y comparación con 11 vs 6 covariables.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/sli-jaiio/paper/paper-11.jpg" alt="Matriz de confusión y métricas del modelo 14-NN">
+            <figcaption>Matriz de confusión y métricas finales del modelo 14-NN propuesto.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/sli-jaiio/paper/paper-12.jpg" alt="Comparación con trabajos del estado del arte">
+            <figcaption>Discusión de fortalezas, limitaciones y comparación con trabajos del estado del arte.</figcaption>
+          </figure>
+        </div>
+      </section>
 
       <section class="case-section">
         <h2>Registro visual</h2>
@@ -131,7 +159,8 @@
         <p>
           Ricardo Di Pasquale es director de la carrera de Ciencia de Datos de la UCA y referente profesional
           en machine learning. En Accenture se desempeña como ML Engineering Associate Director, con foco en
-          ingeniería de modelos, MLOps y aplicación de aprendizaje automático en entornos reales.
+          ingeniería de modelos, MLOps y aplicación de aprendizaje automático en entornos reales. Su presencia
+          en JAIIO aportó acompañamiento académico y puente con la práctica profesional de ML.
         </p>
       </section>
     </main>
