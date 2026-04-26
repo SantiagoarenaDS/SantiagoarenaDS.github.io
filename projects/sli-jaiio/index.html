@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SLI JAIIO 2024 — Santiago Arena</title>
+    <meta name="description" content="Pipeline de machine learning para deteccion de SLI presentado en JAIIO 2024.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#proyectos">← Back to projects</a>
+        <p class="project-kicker">JAIIO 2024 · R · machine learning · lingüística clínica</p>
+        <h1>Pipeline SLI: detección del trastorno específico del lenguaje</h1>
+        <p class="intro">
+          En agosto de 2024 presenté en JAIIO un pipeline para detectar Trastorno Específico del Lenguaje (SLI)
+          a partir de transcripciones de narrativas espontáneas. La presentación fue realizada junto a Ricardo
+          Di Pasquale, director de la carrera de Ciencia de Datos de la UCA y ML Engineering Associate Director
+          en Accenture.
+        </p>
+        <div class="metric-row">
+          <div class="metric"><strong>43 → 11</strong><span>reducción inicial de variables</span></div>
+          <div class="metric"><strong>RF</strong><span>selección por importancia Gini</span></div>
+          <div class="metric"><strong>KNN</strong><span>validación cruzada para elegir k</span></div>
+          <div class="metric"><strong>JAIIO</strong><span>presentación académica 2024</span></div>
+        </div>
+        <img class="hero-visual" src="../../assets/projects/sli-jaiio/01-portada.jpg" alt="Portada de la presentación Pipeline SLI en JAIIO 2024">
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <section class="case-section">
+            <h2>Problema</h2>
+            <p>
+              El proyecto busca apoyar la detección del SLI usando variables extraídas de narrativas espontáneas.
+              La hipótesis técnica es que indicadores lingüísticos como morfemas, errores de palabra, proporción
+              de verbos y riqueza léxica pueden aportar señal para separar casos de desarrollo típico y SLI.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Pipeline</h2>
+            <ul>
+              <li>Carga de datos lingüísticos desde `all_data_R.csv`.</li>
+              <li>Limpieza de vacíos, remoción de duplicados y normalización de variables categóricas.</li>
+              <li>Selección de variables mediante Random Forest, matriz de correlación Spearman e importancia Gini.</li>
+              <li>Regresiones logísticas iterativas para retener variables significativas y explicables.</li>
+              <li>Modelo KNN con partición train/test y validación cruzada para seleccionar `k`.</li>
+              <li>Evaluación con matriz de confusión, pérdida cero-uno, curva ROC y AUC.</li>
+            </ul>
+          </section>
+
+          <section class="case-section">
+            <h2>Variables clave</h2>
+            <p>
+              El análisis priorizó variables como `r_2_i_verbs`, `mlu_morphemes`, `word_errors`,
+              `regular_past_ed`, `average_syl` y `freq_ttr`. El proyecto no solo optimiza performance:
+              también cuida que las variables seleccionadas puedan ser interpretadas por usuarios clínicos
+              o investigadores del lenguaje.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Presentación</h2>
+            <p>
+              La presentación en JAIIO 2024 fue una instancia de comunicación técnica: llevar un pipeline
+              reproducible desde el código hacia una audiencia académica, explicar decisiones de modelado y
+              mostrar cómo la ciencia de datos puede dialogar con problemas de lenguaje y salud.
+            </p>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Repositorio</dt>
+            <dd><a href="https://github.com/SantiagoarenaDS/Pipeline-SLI-JAIIO2024" target="_blank" rel="noreferrer">SantiagoarenaDS/Pipeline-SLI-JAIIO2024</a></dd>
+            <dt>Evento</dt>
+            <dd>53 JAIIO, agosto de 2024.</dd>
+            <dt>Stack</dt>
+            <dd>R, caret, randomForest, ggplot2, ROCR, dplyr, FSelector, CORElearn.</dd>
+            <dt>Entregables</dt>
+            <dd>Dataset, R Markdown, pipeline de selección de variables, modelos y evaluación.</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <section class="case-section">
+        <h2>Registro visual</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="../../assets/projects/sli-jaiio/01-portada.jpg" alt="Portada de la presentación en JAIIO">
+            <figcaption>Portada de la presentación: pipeline para detección de SLI desde transcripciones espontáneas.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/sli-jaiio/02-presentacion.jpg" alt="Santiago Arena presentando exploración de variables">
+            <figcaption>Presentación del análisis exploratorio y reducción de variables.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Con Ricardo Di Pasquale</h2>
+        <figure class="wide-figure">
+          <img src="../../assets/projects/sli-jaiio/03-ricardo.jpg" alt="Santiago Arena con Ricardo Di Pasquale en JAIIO 2024">
+          <figcaption>
+            Santiago Arena junto a Ricardo Di Pasquale durante JAIIO 2024.
+            <a href="https://www.linkedin.com/in/ricardodipasquale/" target="_blank" rel="noreferrer">LinkedIn de Ricardo Di Pasquale</a>.
+          </figcaption>
+        </figure>
+        <p>
+          Ricardo Di Pasquale es director de la carrera de Ciencia de Datos de la UCA y referente profesional
+          en machine learning. En Accenture se desempeña como ML Engineering Associate Director, con foco en
+          ingeniería de modelos, MLOps y aplicación de aprendizaje automático en entornos reales.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>
