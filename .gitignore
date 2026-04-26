@@ -1,0 +1,6 @@
+# Source material can include notebooks, private notes, PDFs and credentials.
+proyectos a incluir/
+
+# Local editor and OS files.
+.DS_Store
+Thumbs.db

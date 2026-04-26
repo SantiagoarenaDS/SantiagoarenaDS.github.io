@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Microscopy Image Denoising — Santiago Arena</title>
+    <meta name="description" content="Proyecto exploratorio de denoising de imagenes biomédicas con deep learning.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#proyectos">← Back to projects</a>
+        <p class="project-kicker">Deep learning · bioimaging · denoising</p>
+        <h1>Microscopy Image Denoising: restauración de imágenes biomédicas</h1>
+        <p class="intro">
+          Proyecto exploratorio para reducir ruido en imágenes de microscopía mediante modelos de deep learning.
+          El trabajo combina generación de datos sintéticos con DeepTrack, autoencoders y experimentos inspirados
+          en pix2pix y CLIDiM para comparar imagen ruidosa contra imagen restaurada.
+        </p>
+        <img class="hero-visual" src="../../assets/projects/denoising/microscopy-noisy-a.png" alt="Imagen de microscopía con ruido">
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <section class="case-section">
+            <h2>Enfoque</h2>
+            <ul>
+              <li>Construcción de datasets emparejados entre imágenes ruidosas y limpias.</li>
+              <li>Lectura y preparación de imágenes TIFF para entrenamiento y validación.</li>
+              <li>Entrenamiento de autoencoder convolucional con TensorFlow/Keras.</li>
+              <li>Exploración de métricas como PSNR, SSIM y pérdidas de variación total.</li>
+              <li>Investigación de arquitecturas pix2pix, U-Net y CLIDiM para denoising contrastivo.</li>
+            </ul>
+          </section>
+
+          <section class="case-section">
+            <h2>Aprendizaje</h2>
+            <p>
+              El valor del proyecto está en conectar investigación de bioimaging con una implementación
+              reproducible: preparación de datos, experimentación en notebooks, comparación visual y selección
+              de métricas adecuadas para imágenes científicas.
+            </p>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Stack</dt>
+            <dd>TensorFlow, Keras, DeepTrack, NumPy, OpenCV, TIFF, notebooks.</dd>
+            <dt>Referencias</dt>
+            <dd>pix2pix, U-Net, CLIDiM y literatura de microscopía de fluorescencia.</dd>
+            <dt>Estado</dt>
+            <dd>Exploratorio, con notebooks y muestras visuales listas para documentar.</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <section class="case-section">
+        <h2>Muestras visuales</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="../../assets/projects/denoising/microscopy-noisy-a.png" alt="Muestra ruidosa A">
+            <figcaption>Imagen de entrada con ruido.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/denoising/microscopy-denoised-a.png" alt="Muestra denoised A">
+            <figcaption>Resultado denoised disponible en el material fuente.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/denoising/microscopy-noisy-b.png" alt="Muestra ruidosa B">
+            <figcaption>Segunda muestra para validar variabilidad visual.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>

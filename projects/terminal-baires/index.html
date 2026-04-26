@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Terminal Baires — Santiago Arena</title>
+    <meta name="description" content="Caso de estudio de simulacion de eventos discretos para Terminal Baires.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#proyectos">← Back to projects</a>
+        <p class="project-kicker">SimPy · operaciones portuarias · análisis de capacidad</p>
+        <h1>Terminal Baires: simulación para decidir capacidad operativa</h1>
+        <p class="intro">
+          Modelo de eventos discretos para analizar la dinámica de buques, contenedores y grúas en una terminal
+          portuaria. El trabajo compara escenarios con una y dos grúas, cambios de rendimiento y tasas de llegada,
+          midiendo el impacto sobre esperas, servicio, reparaciones y eficiencia.
+        </p>
+        <div class="metric-row">
+          <div class="metric"><strong>1000</strong><span>corridas por escenario</span></div>
+          <div class="metric"><strong>8</strong><span>escenarios experimentales</span></div>
+          <div class="metric"><strong>21 → 2 h</strong><span>reducción de espera promedio</span></div>
+          <div class="metric"><strong>10</strong><span>buques servidos por ciclo</span></div>
+        </div>
+        <img class="hero-visual" src="../../assets/projects/terminal-baires/slides-23.jpg" alt="Resultados comparativos de Terminal Baires">
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <section class="case-section">
+            <h2>Problema</h2>
+            <p>
+              Terminal Baires opera carga y descarga de contenedores con recursos limitados. La pregunta central
+              fue si incorporar una segunda grúa mejora la eficiencia más que otros cambios operativos, y cómo
+              afectan las reparaciones y los contenedores medios llenos a la dinámica del puerto.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Modelo</h2>
+            <ul>
+              <li>Llegada de buques con distribución exponencial según tasa mensual.</li>
+              <li>Buques y contenedores modelados como objetos con peso, tipo y estado de llenado.</li>
+              <li>Grúas representadas como recursos limitados en SimPy.</li>
+              <li>Eventos de navegación, servicio, espera, salida y reparación registrados en logs transaccionales.</li>
+              <li>Dashboard en Streamlit para ejecutar escenarios y comparar resultados.</li>
+            </ul>
+          </section>
+
+          <section class="case-section">
+            <h2>Conclusiones</h2>
+            <p>
+              La segunda grúa redujo significativamente los tiempos de espera y el tiempo total de cada buque en el
+              sistema. El modelo también mostró que duplicar rendimiento no necesariamente captura el mismo beneficio
+              que aumentar capacidad paralela, porque la cola se comporta distinto ante congestión y roturas.
+            </p>
+            <p>
+              El trabajo dejó una base extensible para incorporar costos, SLA, sensibilidad de parámetros y una capa
+              económica más fuerte sobre tarifas diferenciadas.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Evidencia visual</h2>
+            <div class="image-grid">
+              <figure>
+                <img src="../../assets/projects/terminal-baires/slides-10.jpg" alt="Diagrama de procesos de Terminal Baires">
+                <figcaption>Diagrama de proceso usado para transferir la lógica del sistema.</figcaption>
+              </figure>
+              <figure>
+                <img src="../../assets/projects/terminal-baires/slides-16.jpg" alt="Ejemplo de ciclo de simulación">
+                <figcaption>Ejemplo de ciclo y trazabilidad de la simulación.</figcaption>
+              </figure>
+              <figure>
+                <img src="../../assets/projects/terminal-baires/slides-17.jpg" alt="Resultados clave de Terminal Baires">
+                <figcaption>Resumen ejecutivo de resultados clave.</figcaption>
+              </figure>
+              <figure>
+                <img src="../../assets/projects/terminal-baires/slides-25.jpg" alt="Conclusiones de Terminal Baires">
+                <figcaption>Conclusiones presentadas al cierre del trabajo.</figcaption>
+              </figure>
+            </div>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Rol</dt>
+            <dd>Modelado, simulación, análisis de resultados y presentación técnica.</dd>
+            <dt>Stack</dt>
+            <dd>Python, SimPy, Pandas, NumPy, SciPy, Matplotlib, Streamlit.</dd>
+            <dt>Repositorio</dt>
+            <dd><a href="https://github.com/SantiagoarenaDS/terminalBaires" target="_blank" rel="noreferrer">SantiagoarenaDS/terminalBaires</a></dd>
+            <dt>Entregables</dt>
+            <dd>Simulador, dashboard, notebook exploratorio, informe técnico y deck de transferencia.</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <section class="case-section">
+        <h2>Deck completo</h2>
+        <div class="slide-gallery">
+          <img src="../../assets/projects/terminal-baires/slides-01.jpg" alt="Terminal Baires slide 1">
+          <img src="../../assets/projects/terminal-baires/slides-02.jpg" alt="Terminal Baires slide 2">
+          <img src="../../assets/projects/terminal-baires/slides-03.jpg" alt="Terminal Baires slide 3">
+          <img src="../../assets/projects/terminal-baires/slides-04.jpg" alt="Terminal Baires slide 4">
+          <img src="../../assets/projects/terminal-baires/slides-05.jpg" alt="Terminal Baires slide 5">
+          <img src="../../assets/projects/terminal-baires/slides-06.jpg" alt="Terminal Baires slide 6">
+          <img src="../../assets/projects/terminal-baires/slides-07.jpg" alt="Terminal Baires slide 7">
+          <img src="../../assets/projects/terminal-baires/slides-08.jpg" alt="Terminal Baires slide 8">
+          <img src="../../assets/projects/terminal-baires/slides-09.jpg" alt="Terminal Baires slide 9">
+          <img src="../../assets/projects/terminal-baires/slides-10.jpg" alt="Terminal Baires slide 10">
+          <img src="../../assets/projects/terminal-baires/slides-11.jpg" alt="Terminal Baires slide 11">
+          <img src="../../assets/projects/terminal-baires/slides-12.jpg" alt="Terminal Baires slide 12">
+          <img src="../../assets/projects/terminal-baires/slides-13.jpg" alt="Terminal Baires slide 13">
+          <img src="../../assets/projects/terminal-baires/slides-14.jpg" alt="Terminal Baires slide 14">
+          <img src="../../assets/projects/terminal-baires/slides-15.jpg" alt="Terminal Baires slide 15">
+          <img src="../../assets/projects/terminal-baires/slides-16.jpg" alt="Terminal Baires slide 16">
+          <img src="../../assets/projects/terminal-baires/slides-17.jpg" alt="Terminal Baires slide 17">
+          <img src="../../assets/projects/terminal-baires/slides-18.jpg" alt="Terminal Baires slide 18">
+          <img src="../../assets/projects/terminal-baires/slides-19.jpg" alt="Terminal Baires slide 19">
+          <img src="../../assets/projects/terminal-baires/slides-20.jpg" alt="Terminal Baires slide 20">
+          <img src="../../assets/projects/terminal-baires/slides-21.jpg" alt="Terminal Baires slide 21">
+          <img src="../../assets/projects/terminal-baires/slides-22.jpg" alt="Terminal Baires slide 22">
+          <img src="../../assets/projects/terminal-baires/slides-23.jpg" alt="Terminal Baires slide 23">
+          <img src="../../assets/projects/terminal-baires/slides-24.jpg" alt="Terminal Baires slide 24">
+          <img src="../../assets/projects/terminal-baires/slides-25.jpg" alt="Terminal Baires slide 25">
+          <img src="../../assets/projects/terminal-baires/slides-26.jpg" alt="Terminal Baires slide 26">
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Informe técnico</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="../../assets/projects/terminal-baires/report-06.jpg" alt="Informe Terminal Baires diagrama de proceso">
+            <figcaption>Diagrama de proceso y lógica de reparación documentados en el informe.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/terminal-baires/report-08.jpg" alt="Variables aleatorias del modelo Terminal Baires">
+            <figcaption>Variables aleatorias y parámetros usados para capturar variabilidad operacional.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/terminal-baires/report-13.jpg" alt="Referencia de grúa portuaria">
+            <figcaption>Contexto operativo para dimensionar rendimiento de grúas.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/terminal-baires/report-15.jpg" alt="Referencia de buques y contenedores">
+            <figcaption>Referencia de escala para buques y contenedores en Puerto de Buenos Aires.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>

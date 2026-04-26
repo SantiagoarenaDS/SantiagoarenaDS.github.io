@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forest Fire Containment — Santiago Arena</title>
+    <meta name="description" content="Caso de estudio de decision support para contencion y prevencion de incendios forestales.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#proyectos">← Back to projects</a>
+        <p class="project-kicker">GeoAI · riesgo ambiental · producto de datos</p>
+        <h1>Forest Fire Containment: inferencia espacial para asistir decisiones</h1>
+        <p class="intro">
+          Proyecto orientado a construir una herramienta pública que estime severidad de incendios forestales
+          y ayude a contextualizar focos con datos meteorológicos, espaciales, edafológicos, simulaciones y
+          pronósticos. La transferencia técnica se pensó para alinear modelo, producto, riesgos y arquitectura.
+        </p>
+        <div class="metric-row">
+          <div class="metric"><strong>2M+</strong><span>incendios históricos 1992-2020</span></div>
+          <div class="metric"><strong>20</strong><span>variables base del censo</span></div>
+          <div class="metric"><strong>5</strong><span>categorías de severidad</span></div>
+          <div class="metric"><strong>60%+</strong><span>objetivo inicial de precisión</span></div>
+        </div>
+        <img class="hero-visual" src="../../assets/projects/forest-fire/knowledge-transfer-08.jpg" alt="Aplicacion Streamlit de Forest Fire">
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <section class="case-section">
+            <h2>Objetivo</h2>
+            <p>
+              Implementar una solución accesible para apoyar contención y prevención de incendios. El usuario
+              ingresa fecha de descubrimiento, latitud y longitud; la aplicación devuelve una clase de intensidad
+              y anillos de afectación sobre mapa.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Arquitectura de datos</h2>
+            <ul>
+              <li>Censo de incendios forestales de Estados Unidos como fuente histórica principal.</li>
+              <li>Google Earth Engine para variables geoespaciales y satelitales.</li>
+              <li>OpenStreetMap, OpenMeteo, Daymet y GridSoils para enriquecer contexto local.</li>
+              <li>MLflow para gestionar y monitorear el ciclo de vida del modelo.</li>
+              <li>Streamlit y Render para exponer el servicio como producto web.</li>
+            </ul>
+          </section>
+
+          <section class="case-section">
+            <h2>Modelo</h2>
+            <p>
+              El enfoque combina un clasificador LightGBM con simulación inspirada en Rothermel. La severidad
+              se modela como acres quemados sobre duración del evento y se representa en cinco categorías de
+              acuerdo con su distribución.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Riesgos y próximos pasos</h2>
+            <p>
+              El equipo identificó riesgos sobre desbalanceo de clases, consistencia de merges, valor de datos
+              y disponibilidad de variables como fuel moisture. Las siguientes iteraciones apuntan a rediseñar
+              el target, evaluar XGBoost, fortalecer backend, mejorar simulador y asegurar reproducibilidad.
+            </p>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Tipo</dt>
+            <dd>Knowledge transfer y prototipo de decision support.</dd>
+            <dt>Stack</dt>
+            <dd>LightGBM, Streamlit, Render, Google Earth Engine, OpenMeteo, Daymet, GridSoils, MLflow.</dd>
+            <dt>Problema</dt>
+            <dd>Anticipar severidad y aportar contexto operativo a potenciales focos de incendio.</dd>
+            <dt>Producto</dt>
+            <dd>Aplicación web con inferencia espacial y visualización sobre mapa.</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <section class="case-section">
+        <h2>Láminas clave</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="../../assets/projects/forest-fire/knowledge-transfer-03.jpg" alt="Datos del proyecto Forest Fire">
+            <figcaption>Dataset base: más de dos millones de incendios ocurridos entre 1992 y 2020.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/forest-fire/knowledge-transfer-05.jpg" alt="Contextualizaciones del proyecto Forest Fire">
+            <figcaption>Capas de contexto: meteorología, espacio, suelo, simulaciones y pronósticos.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/forest-fire/knowledge-transfer-07.jpg" alt="Modelo Forest Fire">
+            <figcaption>Modelo híbrido con LightGBM y Rothermel para estimar severidad.</figcaption>
+          </figure>
+          <figure>
+            <img src="../../assets/projects/forest-fire/knowledge-transfer-10.jpg" alt="Riesgos del proyecto Forest Fire">
+            <figcaption>Matriz RAG de riesgos, evidencia, impacto y mitigación.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Knowledge transfer completo</h2>
+        <div class="slide-gallery">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-01.jpg" alt="Forest Fire knowledge transfer 1">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-02.jpg" alt="Forest Fire knowledge transfer 2">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-03.jpg" alt="Forest Fire knowledge transfer 3">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-04.jpg" alt="Forest Fire knowledge transfer 4">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-05.jpg" alt="Forest Fire knowledge transfer 5">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-06.jpg" alt="Forest Fire knowledge transfer 6">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-07.jpg" alt="Forest Fire knowledge transfer 7">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-08.jpg" alt="Forest Fire knowledge transfer 8">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-09.jpg" alt="Forest Fire knowledge transfer 9">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-10.jpg" alt="Forest Fire knowledge transfer 10">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-11.jpg" alt="Forest Fire knowledge transfer 11">
+          <img src="../../assets/projects/forest-fire/knowledge-transfer-12.jpg" alt="Forest Fire knowledge transfer 12">
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>
