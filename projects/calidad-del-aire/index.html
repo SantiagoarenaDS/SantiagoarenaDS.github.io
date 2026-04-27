@@ -45,7 +45,13 @@
           <div class="metric"><strong>7</strong><span>módulos Python orquestados</span></div>
           <div class="metric"><strong>P95</strong><span>alertas dinámicas por contaminante</span></div>
         </div>
-        <img class="hero-visual" src="../../assets/projects/calidad-del-aire/airflow-report-06.jpg" alt="DAG de Airflow completado exitosamente">
+        <figure class="wide-figure">
+          <img class="hero-visual" src="../../assets/projects/calidad-del-aire/flow-overview.png" alt="Flujo planteado del DAG de Calidad del Aire">
+          <figcaption>
+            Portada conceptual del DAG: se descarga el CSV, se transforman en paralelo calidad de aire y temperatura,
+            se evalúan umbrales, se combinan datasets y se notifica la finalización del pipeline.
+          </figcaption>
+        </figure>
       </section>
 
       <div class="case-layout">
@@ -114,39 +120,30 @@
       </div>
 
       <section class="case-section">
-        <h2>Evidencia visual</h2>
+        <h2>Capturas del sistema</h2>
         <div class="image-grid">
           <figure>
-            <img src="../../assets/projects/calidad-del-aire/airflow-report-05.jpg" alt="Flujo de tareas del DAG">
-            <figcaption>Flujo del DAG con módulos secuenciales y paralelos.</figcaption>
+            <img src="../../assets/projects/calidad-del-aire/email-summary.png" alt="Correo de pipeline completado de Airflow">
+            <figcaption>
+              Notificación de pipeline completado: resume ejecución, datasets generados y transformaciones aplicadas.
+              La alerta de contaminantes no se disparó en esta corrida, pero el DAG la enviaría si se detectaran
+              umbrales peligrosos.
+            </figcaption>
           </figure>
           <figure>
-            <img src="../../assets/projects/calidad-del-aire/airflow-report-06.jpg" alt="DAG completado y artefactos generados">
-            <figcaption>Ejecución exitosa, artefactos principales y producto final.</figcaption>
+            <img src="../../assets/projects/calidad-del-aire/airflow-success.png" alt="DAG completado exitosamente en Airflow">
+            <figcaption>
+              DAG completado exitosamente desde la interfaz de Airflow hosteada en Docker, con tareas de descarga,
+              transformación paralela, análisis, combinación y envío de correo en estado success.
+            </figcaption>
           </figure>
           <figure>
-            <img src="../../assets/projects/calidad-del-aire/airflow-report-07.jpg" alt="Correos automáticos de alerta">
-            <figcaption>Recepción de correos automáticos y alerta por umbrales críticos.</figcaption>
+            <img src="../../assets/projects/calidad-del-aire/docker-running.png" alt="Docker Desktop con contenedor de Airflow corriendo">
+            <figcaption>
+              Docker Desktop mostrando el contenedor del proyecto montado y corriendo, evidencia del entorno reproducible
+              usado para levantar Airflow y ejecutar el pipeline.
+            </figcaption>
           </figure>
-          <figure>
-            <img src="../../assets/projects/calidad-del-aire/airflow-report-08.jpg" alt="Correo de finalización del pipeline">
-            <figcaption>Resumen de finalización con control de dimensiones del proceso ETL.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="case-section">
-        <h2>Informe completo</h2>
-        <div class="slide-gallery">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-01.jpg" alt="Informe Airflow página 1">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-02.jpg" alt="Informe Airflow página 2">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-03.jpg" alt="Informe Airflow página 3">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-04.jpg" alt="Informe Airflow página 4">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-05.jpg" alt="Informe Airflow página 5">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-06.jpg" alt="Informe Airflow página 6">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-07.jpg" alt="Informe Airflow página 7">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-08.jpg" alt="Informe Airflow página 8">
-          <img src="../../assets/projects/calidad-del-aire/airflow-report-09.jpg" alt="Informe Airflow página 9">
         </div>
       </section>
     </main>
