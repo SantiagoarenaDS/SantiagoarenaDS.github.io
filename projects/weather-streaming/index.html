@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tablero Climático Kafka — Santiago Arena</title>
+    <meta name="description" content="Producto de ingeniería de datos con Kafka, ZooKeeper, Open-Meteo y dashboard climático interactivo en Colab.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#trabajo">Work</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#proyectos">← Back to projects</a>
+        <p class="project-kicker">Datos en streaming · dashboards interactivos · Kafka · ingeniería de datos</p>
+        <h1>Tablero Climático Kafka: producto de streaming meteorológico en Colab</h1>
+        <p class="intro">
+          Notebook autocontenido que convierte un dashboard climático interactivo en un producto de ingeniería
+          de datos con ingesta, enriquecimiento y mensajería en tiempo real. El flujo levanta ZooKeeper y Kafka
+          dentro de Colab, publica snapshots de Open-Meteo en un topic y consume esos eventos para validar una
+          tabla enriquecida antes de renderizar el tablero HTML original.
+        </p>
+        <div class="hero-actions" aria-label="Acciones del notebook">
+          <a class="button button-primary" href="https://colab.research.google.com/github/SantiagoarenaDS/SantiagoarenaDS.github.io/blob/main/projects/weather-streaming/Tablero_climatico.ipynb" target="_blank" rel="noreferrer">Abrir en Colab</a>
+          <a class="button" href="Tablero_climatico.ipynb">Ver notebook</a>
+        </div>
+        <div class="metric-row">
+          <div class="metric"><strong>1</strong><span>notebook reproducible en Colab</span></div>
+          <div class="metric"><strong>9</strong><span>ciudades argentinas monitoreadas</span></div>
+          <div class="metric"><strong>Kafka</strong><span>topic de eventos meteorológicos</span></div>
+          <div class="metric"><strong>60s</strong><span>refresh del dashboard final</span></div>
+        </div>
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <section class="case-section">
+            <h2>Arquitectura</h2>
+            <p>
+              El producto fusiona dos piezas: el tablero climático con mapa y el pipeline compacto de Kafka para
+              Buenos Aires. La solución instala Java, Kafka 3.9, ZooKeeper y dependencias Python; luego arranca los
+              servicios, crea el topic `tablero-climatico-ciudades` y ejecuta un ciclo producer-consumer verificable.
+            </p>
+            <p>
+              La capa de streaming enriquece cada ciudad con variables meteorológicas y calidad de aire: temperatura,
+              sensación térmica, humedad, lluvia, viento, ráfagas, presión, UV, PM2.5, PM10 y AQI europeo. Esa salida
+              alimenta una tabla Pandas auditable y deja el tablero HTML final intacto.
+            </p>
+          </section>
+
+          <section class="case-section">
+            <h2>Flujo de datos</h2>
+            <ul>
+              <li>Open-Meteo Forecast API y Air Quality API proveen snapshots actuales por ciudad.</li>
+              <li>Un productor Python serializa cada medición como evento JSON y la publica en Kafka.</li>
+              <li>ZooKeeper coordina el broker para mantener el modo clásico de Kafka solicitado.</li>
+              <li>Un consumidor lee desde el topic, toma el último evento por ciudad y valida cobertura completa.</li>
+              <li>El notebook muestra una tabla enriquecida y luego renderiza el dashboard interactivo original.</li>
+            </ul>
+          </section>
+
+          <section class="case-section">
+            <h2>Decisión técnica</h2>
+            <p>
+              La implementación mantiene el dashboard como superficie estable: no se reescribe el HTML final ni se
+              cambia su contrato visual. Kafka queda como capa de ingeniería de datos alrededor del tablero, separando
+              ingesta, transporte, consumo y visualización.
+            </p>
+            <p class="code-note">
+              Resultado: un demo ejecutable en Colab que prueba streaming local con Kafka/ZooKeeper y conserva el
+              producto analítico para usuarios finales.
+            </p>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Notebook</dt>
+            <dd><a href="Tablero_climatico.ipynb">Tablero_climatico.ipynb</a></dd>
+            <dt>Stack</dt>
+            <dd>Apache Kafka, ZooKeeper, Google Colab, Python, kafka-python, Pandas, Open-Meteo, Leaflet.</dd>
+            <dt>Producto</dt>
+            <dd>Datos en streaming, dashboard interactivo y validación producer-consumer en un único notebook.</dd>
+            <dt>Uso</dt>
+            <dd>Abrir en Colab, ejecutar las celdas en orden y detener servicios con la celda final de limpieza.</dd>
+          </dl>
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>
