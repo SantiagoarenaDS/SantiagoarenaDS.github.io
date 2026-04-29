@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ayudante de Ingeniería de Datos - Santiago Arena</title>
+    <meta name="description" content="Experiencia docente como ayudante de cátedra en Introducción a Ingeniería de Datos.">
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", stored ? stored === "dark" : prefersDark);
+      })();
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Santiago Arena</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../#proyectos">Projects</a>
+        <a href="../../#trabajo">Work</a>
+        <a href="../../#resume">Resume</a>
+        <a href="../../#contacto">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+          <span class="theme-icon theme-icon-light">☀</span>
+          <span class="theme-icon theme-icon-dark">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero">
+        <a class="back-link" href="../../#trabajo">← Back to work</a>
+        <p class="project-kicker">Universidad · docencia · ingeniería de datos</p>
+        <h1>Ayudante de cátedra de Introducción a Ingeniería de Datos</h1>
+        <p class="intro">
+          Apoyo académico en una materia central de formación data: acompañamiento a estudiantes, explicación de
+          conceptos, revisión de trabajos prácticos y conexión entre fundamentos de ingeniería de datos y casos
+          aplicados.
+        </p>
+        <div class="metric-row">
+          <div class="metric"><strong>ETL</strong><span>conceptos base de pipelines y transformación</span></div>
+          <div class="metric"><strong>Datos</strong><span>fundamentos de calidad, estructura y uso</span></div>
+          <div class="metric"><strong>TPs</strong><span>acompañamiento y revisión de trabajos</span></div>
+          <div class="metric"><strong>Didáctica</strong><span>explicación clara para estudiantes</span></div>
+        </div>
+      </section>
+
+      <div class="case-layout">
+        <article>
+          <div class="work-narrative">
+            <section class="case-section">
+              <h2>Rol</h2>
+              <p>
+                Mi tarea fue acompañar el aprendizaje técnico con explicaciones concretas, seguimiento de ejercicios
+                y ayuda para que los estudiantes conectaran teoría, herramientas y problemas reales.
+              </p>
+            </section>
+
+            <section class="case-section">
+              <h2>Enfoque</h2>
+              <p>
+                Trabajé sobre fundamentos de ingeniería de datos, pipelines, transformación, calidad, organización de
+                información y criterios para pensar productos de datos reproducibles.
+              </p>
+            </section>
+          </div>
+
+          <section class="case-section">
+            <h2>Aporte aplicado</h2>
+            <ul>
+              <li>Acompañamiento a estudiantes en consultas técnicas y conceptuales.</li>
+              <li>Revisión de trabajos prácticos con foco en claridad, reproducibilidad y criterio de datos.</li>
+              <li>Traducción de conceptos abstractos a ejemplos aplicados.</li>
+              <li>Conexión entre ingeniería de datos y proyectos reales del ecosistema data.</li>
+            </ul>
+          </section>
+        </article>
+
+        <aside class="side-panel">
+          <dl>
+            <dt>Área</dt>
+            <dd>Docencia universitaria.</dd>
+            <dt>Materia</dt>
+            <dd>Introducción a Ingeniería de Datos.</dd>
+            <dt>Foco</dt>
+            <dd>ETL, pipelines, calidad de datos, trabajos prácticos y acompañamiento técnico.</dd>
+            <dt>Perfil</dt>
+            <dd><a href="https://www.linkedin.com/in/santiago-arena-92a8191a2" target="_blank" rel="noreferrer">LinkedIn de Santiago Arena</a></dd>
+          </dl>
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 Santiago Arena</p>
+    </footer>
+    <script src="../../script.js"></script>
+  </body>
+</html>
